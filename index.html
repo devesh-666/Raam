@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday — Raam Prakash</title>
+
+  <style>
+    /* Rockybilly font (local) */
+    @font-face {
+      font-family: 'Rockybilly';
+      src: url('assets/fonts/rockybilly.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root{
+      --bg-top:#210338; --bg-bottom:#120523; --neon:#ff58c4; --muted:#aeb7bf;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial;background:linear-gradient(180deg,var(--bg-top),var(--bg-bottom));color:#fff;overflow-x:hidden}
+
+    .hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+
+    /* Video background */
+    #bgVideo{
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; opacity:0.72;
+      filter: saturate(1.05) contrast(1.02) blur(0.15px);
+    }
+
+    /* Music button top-right */
+  /* Neon Liquid Glass button (Option C) */
+.neon-glass-btn{
+  position:absolute;
+  top:28px;             /* won't touch other elements */
+  right:28px;           /* placed on the right; change to left:28px if you want it left */
+  z-index:80;
+
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 20px;
+  min-height:44px;
+  border-radius:25px;
+
+  /* neon glass base */
+  background: rgba(255, 88, 196, 0.14);
+  backdrop-filter: blur(18px) saturate(200%);
+  -webkit-backdrop-filter: blur(18px) saturate(200%);
+  border: 1px solid rgba(255,88,196,0.36);
+
+  /* glow & depth */
+  box-shadow:
+    0 6px 30px rgba(20,6,30,0.65),
+    0 0 12px rgba(255,88,196,0.28),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+
+  color:#fff;
+  font-weight:700;
+  font-size:15px;
+  letter-spacing:0.2px;
+  cursor:pointer;
+  transition: transform .18s cubic-bezier(.2,.9,.2,1), box-shadow .18s, background .18s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Hover / active */
+.neon-glass-btn:hover{
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 10px 40px rgba(20,6,30,0.7),
+    0 0 22px rgba(255,88,196,0.36),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  background: rgba(255, 88, 196, 0.20);
+}
+
+.neon-glass-btn:active{
+  transform: translateY(0) scale(0.995);
+  box-shadow:
+    0 6px 20px rgba(20,6,30,0.6),
+    0 0 12px rgba(255,88,196,0.28);
+}
+
+/* small icon style if you want to add an <svg> inside */
+.neon-glass-btn svg{ width:16px; height:16px; display:inline-block; vertical-align:middle; filter: drop-shadow(0 2px 6px rgba(255,88,196,0.18)); }
+
+/* responsive adjustments (optional) */
+@media (max-width:640px){
+  .neon-glass-btn{ right:12px; top:16px; padding:10px 12px; font-size:13px; border-radius:12px; }
+}
+
+
+    /* big BACKGROUND words (behind everything) */
+    .bg-word-top, .bg-word-bottom{
+      position:absolute; transform:translateX(-50%); text-align:center; font-family:'Rockybilly', cursive; font-size:9.2vw; line-height:0.9; color:#fff;
+      text-shadow:0 0 10px rgba(255,88,196,0.18), 0 0 30px rgba(255,88,196,0.14), 0 8px 30px rgba(0,0,0,0.55); pointer-events:none; z-index:2;
+      user-select:none;
+    }
+    .bg-word-top{ top:25%;  left:28%; font-size:5vw; line-height:0.82; }
+    .bg-word-bottom{ top:86%;  left:55.5%; font-size:5vw; line-height:0.82; }
+
+    /* layers on top of video (subtle particles / nebula) */
+    .layer{position:absolute;inset:0;pointer-events:none;z-index:1}
+    .stars{ background-image:radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px); background-size:120px 120px; opacity:0.26; mix-blend-mode:screen; filter:blur(0.5px); }
+    .nebula{ background:radial-gradient(ellipse at 25% 20%, rgba(255,80,200,0.08), transparent 18%), radial-gradient(ellipse at 70% 70%, rgba(120,60,200,0.08), transparent 20%); opacity:0.9; }
+
+    /* portrait wrapper controls scaling cleanly; keep image width:100% */
+    .portrait-wrap{ position:absolute; top:50%; left:40%; transform:translate(-50%,-50%); width:min(48vw,560px); max-width:620px; z-index:10; will-change:transform; display:grid; place-items:center; }
+    .portrait img{ width:145%; height:auto; display:block; object-fit:contain; filter:drop-shadow(0 35px 65px rgba(0,0,0,0.85)); }
+
+    /* NAME overlay in front of portrait (centered using left:50%/transform) */
+    .name-overlay{ position:absolute; left:35%; top:38%; transform:translate(-50%,-22%); z-index:70; pointer-events:none;
+      text-align:center; font-family:'Playfair Display', serif;; font-size:9.2vw; line-height:0.9; color:#FFB6C1;
+      text-shadow:0 0 10px rgba(255,88,196,0.18), 0 0 30px rgba(255,108,106,114), 0 8px 30px rgba(255,108,106,155);
+      white-space:nowrap;
+    }
+    /* second line (Prakash) — place slightly lower */
+    .name-overlay.bt{ top:58%; left:65%; transform:translate(-50%,-22%); font-size:9.2vw;  text-align:center; font-family:'Playfair Display', serif;; font-size:9.2vw; line-height:0.9; color:#fff;
+      text-shadow:0 0 10px rgba(200,188,196,108), 0 0 30px rgba(255,88,196,0.14), 0 8px 30px rgba(0,0,0,0.55);
+      white-space:nowrap;}
+
+    .vignette{ position:absolute; inset:0; pointer-events:none; background:radial-gradient(60% 40% at 50% 35%, rgba(255,255,255,0.02), transparent 20%), linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.45) 100%); z-index:6; }
+
+    .hint{ position:absolute; bottom:15px; left:7%; transform:translateX(-50%); color:rgba(255,255,255,0.6); font-size:13px; z-index:60; }
+
+    @media (max-width:980px){
+      .name-overlay, .name-overlay.bt{ font-size:20vw }
+      .portrait-wrap{ width:320px }
+      .bg-word-top, .bg-word-bottom{ font-size:38vw }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+
+    <!-- VIDEO: put your MP4 at assets/video/background.mp4 -->
+    <video id="bgVideo" autoplay muted loop playsinline>
+      <source src="assets/video/background.mp4" type="video/mp4">
+    </video>
+
+    <!-- subtle layer effects -->
+    <div class="layer stars"></div>
+    <div class="layer nebula"></div>
+
+    <!-- huge background words behind -->
+    <div class="bg-word-top">HAPPY</div>
+    <div class="bg-word-bottom">BIRTHDAY</div>
+
+    <!-- portrait centered -->
+    <div class="portrait-wrap" id="portraitWrap">
+      <div class="portrait" id="portrait">
+        <img src="assets/img/raam-hero-centered.png" alt="Raam">
+      </div>
+    </div>
+
+    <!-- overlays IN FRONT of portrait -->
+    <div class="name-overlay" aria-hidden><span class="first">Raam</span></div>
+    <div class="name-overlay bt" aria-hidden><span class="last">Prakash</span></div>
+
+    <!-- music control top-right -->
+    <button id="playBtn" class="neon-glass-btn" aria-pressed="false">▶ Play Music</button>
+
+    <div class="vignette"></div>
+    <div class="hint">SCROLL TO KNOW MORE</div>
+  </div>
+
+  <section style="height:140vh;background:linear-gradient(180deg,transparent,rgba(2,1,8,0.75));"></section>
+
+  <!-- audio (use .mp3/.ogg) -->
+  <audio id="bgMusic" src="assets/music/Raam.mp3" loop preload="metadata"></audio>
+
+  <script>
+    /* PARALLAX: portrait + layers + overlays follow mouse */
+    (function(){
+      const pw = document.getElementById('portraitWrap');
+      const stars = document.querySelector('.stars');
+      const neb = document.querySelector('.nebula');
+      const topWord = document.querySelector('.bg-word-top');
+      const bottomWord = document.querySelector('.bg-word-bottom');
+      const overlay = document.querySelector('.name-overlay');
+      const overlayBt = document.querySelector('.name-overlay.bt');
+
+      let mx=0,my=0, rx=0,ry=0;
+      window.addEventListener('mousemove', e=>{
+        const cx = innerWidth/2, cy = innerHeight/2;
+        mx = (e.clientX - cx) / cx;
+        my = (e.clientY - cy) / cy;
+      }, {passive:true});
+
+      function lerp(a,b,n){ return a + (b-a)*n; }
+
+      function frame(){
+        rx = lerp(rx, mx, 0.09);
+        ry = lerp(ry, my, 0.09);
+
+        pw.style.transform = `translate(-50%, -50%) translate(${rx*36}px, ${ry*26}px)`;
+
+        topWord.style.transform = `translate(calc(-50% + ${-rx*48}px), ${-ry*18}px)`;
+        bottomWord.style.transform = `translate(calc(-50% + ${-rx*60}px), ${-ry*22}px)`;
+
+        if(overlay) overlay.style.transform = `translate(-50%,-22%) translate(${rx*28}px, ${ry*18}px)`;
+        if(overlayBt) overlayBt.style.transform = `translate(-50%,-22%) translate(${rx*28}px, ${ry*18}px)`;
+
+        stars.style.transform = `translate3d(${ -rx*24 }px, ${ -ry*14 }px, 0)`;
+        neb.style.transform = `translate3d(${ -rx*16 }px, ${ -ry*8 }px, 0)`;
+
+        requestAnimationFrame(frame);
+      }
+      frame();
+    })();
+
+    /* MUSIC PLAY BUTTON */
+    (function(){
+      const btn = document.getElementById('playBtn');
+      const music = document.getElementById('bgMusic');
+      let playing = false;
+      btn.addEventListener('click', ()=>{
+        if(!playing){
+          music.play().then(()=>{ playing=true; btn.textContent='⏸ Pause Music'; }).catch(()=>{ alert('Autoplay blocked. Click again to allow audio'); })
+        } else {
+          music.pause(); playing=false; btn.textContent='▶ Play Music';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
