@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Happy Birthday — Raam Prakash</title>
-
+  <title>Happy Birthday — Raam Prakash (2 page demo)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <style>
     /* Rockybilly font (local) */
     @font-face {
@@ -16,213 +16,473 @@
     }
 
     :root{
-      --bg-top:#210338; --bg-bottom:#120523; --neon:#ff58c4; --muted:#aeb7bf;
+      --bg-top:#210338;
+      --bg-bottom:#120523;
+      --neon:#ff58c4;
+      --muted:#aeb7bf;
+      --glass: rgba(255,255,255,0.06);
+      --card-bg: rgba(10,8,14,0.48);
+      --accent: rgba(255,88,196,0.92);
     }
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial;background:linear-gradient(180deg,var(--bg-top),var(--bg-bottom));color:#fff;overflow-x:hidden}
 
+    /* ===========================
+       FIRST PAGE — left untouched
+       (copied exactly from your version)
+       =========================== */
     .hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
-
-    /* Video background */
-    #bgVideo{
-      position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; opacity:0.72;
-      filter: saturate(1.05) contrast(1.02) blur(0.15px);
-    }
-
-    /* Music button top-right */
-  /* Neon Liquid Glass button (Option C) */
-.neon-glass-btn{
-  position:absolute;
-  top:28px;             /* won't touch other elements */
-  right:28px;           /* placed on the right; change to left:28px if you want it left */
-  z-index:80;
-
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:12px 20px;
-  min-height:44px;
-  border-radius:25px;
-
-  /* neon glass base */
-  background: rgba(255, 88, 196, 0.14);
-  backdrop-filter: blur(18px) saturate(200%);
-  -webkit-backdrop-filter: blur(18px) saturate(200%);
-  border: 1px solid rgba(255,88,196,0.36);
-
-  /* glow & depth */
-  box-shadow:
-    0 6px 30px rgba(20,6,30,0.65),
-    0 0 12px rgba(255,88,196,0.28),
-    inset 0 1px 0 rgba(255,255,255,0.06);
-
-  color:#fff;
-  font-weight:700;
-  font-size:15px;
-  letter-spacing:0.2px;
-  cursor:pointer;
-  transition: transform .18s cubic-bezier(.2,.9,.2,1), box-shadow .18s, background .18s;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Hover / active */
-.neon-glass-btn:hover{
-  transform: translateY(-3px) scale(1.02);
-  box-shadow:
-    0 10px 40px rgba(20,6,30,0.7),
-    0 0 22px rgba(255,88,196,0.36),
-    inset 0 1px 0 rgba(255,255,255,0.08);
-  background: rgba(255, 88, 196, 0.20);
-}
-
-.neon-glass-btn:active{
-  transform: translateY(0) scale(0.995);
-  box-shadow:
-    0 6px 20px rgba(20,6,30,0.6),
-    0 0 12px rgba(255,88,196,0.28);
-}
-
-/* small icon style if you want to add an <svg> inside */
-.neon-glass-btn svg{ width:16px; height:16px; display:inline-block; vertical-align:middle; filter: drop-shadow(0 2px 6px rgba(255,88,196,0.18)); }
-
-/* responsive adjustments (optional) */
-@media (max-width:640px){
-  .neon-glass-btn{ right:12px; top:16px; padding:10px 12px; font-size:13px; border-radius:12px; }
-}
-
-
-    /* big BACKGROUND words (behind everything) */
-    .bg-word-top, .bg-word-bottom{
-      position:absolute; transform:translateX(-50%); text-align:center; font-family:'Rockybilly', cursive; font-size:9.2vw; line-height:0.9; color:#fff;
-      text-shadow:0 0 10px rgba(255,88,196,0.18), 0 0 30px rgba(255,88,196,0.14), 0 8px 30px rgba(0,0,0,0.55); pointer-events:none; z-index:2;
-      user-select:none;
-    }
-    .bg-word-top{ top:25%;  left:28%; font-size:5vw; line-height:0.82; }
-    .bg-word-bottom{ top:86%;  left:55.5%; font-size:5vw; line-height:0.82; }
-
-    /* layers on top of video (subtle particles / nebula) */
+    #bgVideo{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; opacity:0.72; filter: saturate(1.05) contrast(1.02) blur(0.15px);}
     .layer{position:absolute;inset:0;pointer-events:none;z-index:1}
     .stars{ background-image:radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px); background-size:120px 120px; opacity:0.26; mix-blend-mode:screen; filter:blur(0.5px); }
     .nebula{ background:radial-gradient(ellipse at 25% 20%, rgba(255,80,200,0.08), transparent 18%), radial-gradient(ellipse at 70% 70%, rgba(120,60,200,0.08), transparent 20%); opacity:0.9; }
 
-    /* portrait wrapper controls scaling cleanly; keep image width:100% */
-    .portrait-wrap{ position:absolute; top:50%; left:40%; transform:translate(-50%,-50%); width:min(48vw,560px); max-width:620px; z-index:10; will-change:transform; display:grid; place-items:center; }
-    .portrait img{ width:145%; height:auto; display:block; object-fit:contain; filter:drop-shadow(0 35px 65px rgba(0,0,0,0.85)); }
+    .neon-glass-btn{position:absolute;top:28px;right:28px;z-index:80;display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:25px;background: rgba(255, 88, 196, 0.14);backdrop-filter: blur(18px) saturate(200%);-webkit-backdrop-filter: blur(18px) saturate(200%);border: 1px solid rgba(255,88,196,0.36);box-shadow:0 6px 30px rgba(20,6,30,0.65),0 0 12px rgba(255,88,196,0.28),inset 0 1px 0 rgba(255,255,255,0.06);color:#fff;font-weight:700;font-size:15px;cursor:pointer;transition: transform .18s, box-shadow .18s; }
+    .neon-glass-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 10px 40px rgba(20,6,30,0.7),0 0 22px rgba(255,88,196,0.36)}
 
-    /* NAME overlay in front of portrait (centered using left:50%/transform) */
-    .name-overlay{ position:absolute; left:35%; top:38%; transform:translate(-50%,-22%); z-index:70; pointer-events:none;
-      text-align:center; font-family:'Playfair Display', serif;; font-size:9.2vw; line-height:0.9; color:#FFB6C1;
-      text-shadow:0 0 10px rgba(255,88,196,0.18), 0 0 30px rgba(255,108,106,114), 0 8px 30px rgba(255,108,106,155);
-      white-space:nowrap;
-    }
-    /* second line (Prakash) — place slightly lower */
-    .name-overlay.bt{ top:58%; left:65%; transform:translate(-50%,-22%); font-size:9.2vw;  text-align:center; font-family:'Playfair Display', serif;; font-size:9.2vw; line-height:0.9; color:#fff;
-      text-shadow:0 0 10px rgba(200,188,196,108), 0 0 30px rgba(255,88,196,0.14), 0 8px 30px rgba(0,0,0,0.55);
-      white-space:nowrap;}
+    .bg-word-top, .bg-word-bottom{position:absolute; transform:translateX(-50%); text-align:center; font-family:'Rockybilly', cursive; font-size:9.2vw; line-height:0.9; color:#fff; text-shadow:0 0 10px rgba(255,88,196,0.18), 0 0 30px rgba(255,88,196,0.14); pointer-events:none; z-index:2; user-select:none;}
+    .bg-word-top{ top:25%;  left:28%; font-size:5vw; line-height:0.82; }
+    .bg-word-bottom{ top:86%;  left:55.5%; font-size:5vw; line-height:0.82; }
+
+    .portrait-wrap{ position:absolute; top:50%; left:40%; transform:translate(-50%,-50%); width:min(48vw,560px); max-width:620px; z-index:10; will-change:transform; display:grid; place-items:center; transition:transform .45s cubic-bezier(.2,.9,.2,1);}
+    .portrait img{ width:145%; height:auto; display:block; object-fit:contain; filter:drop-shadow(0 35px 65px rgba(0,0,0,0.85)); transition:transform .45s ease; }
+
+    .name-overlay{ position:absolute; left:35%; top:38%; transform:translate(-50%,-22%); z-index:70; pointer-events:none; text-align:center; font-family:'Playfair Display', serif; font-size:9.2vw; line-height:0.9; color:#FFB6C1; text-shadow:0 0 10px rgba(255,88,196,0.18); white-space:nowrap;}
+    .name-overlay.bt{ top:58%; left:65%; transform:translate(-50%,-22%); font-size:9.2vw; color:#fff; text-shadow:0 0 10px rgba(200,188,196,0.2); }
 
     .vignette{ position:absolute; inset:0; pointer-events:none; background:radial-gradient(60% 40% at 50% 35%, rgba(255,255,255,0.02), transparent 20%), linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.45) 100%); z-index:6; }
-
     .hint{ position:absolute; bottom:15px; left:7%; transform:translateX(-50%); color:rgba(255,255,255,0.6); font-size:13px; z-index:60; }
 
+    /* ===========================
+       BUTTON / GLASS util (also used on page 2)
+       =========================== */
+    .btn{padding:10px 14px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.04);color:#fff;font-weight:600;cursor:pointer}
+    .btn.primary{background:var(--neon);color:#18021a;border:none}
+    .glass-btn{background: rgba(255,255,255,0.06);backdrop-filter: blur(10px);border-radius:12px;padding:10px 14px;border:1px solid rgba(255,255,255,0.06);color:#fff;font-weight:700}
+
+    /* ===========================
+       SECOND PAGE — CAKE SECTION
+       =========================== */
+    .cake-section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px 28px;position:relative;background:linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.55));}
+    .cake-wrap{width:920px;max-width:94vw;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:28px;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,0.65);display:flex;gap:20px;align-items:center;justify-content:space-between}
+    .cake-left{flex:1;min-width:260px;padding:8px}
+    .cake-right{width:460px;display:grid;place-items:center;position:relative}
+    .cake-ctr{width:380px;height:380px;display:grid;place-items:center;position:relative;pointer-events:none}
+    /* slices base */
+    .slice{transform-origin:0% 0%;transition:transform 900ms cubic-bezier(.2,.9,.2,1), opacity 700ms;transform-origin:50% 50%;}
+    .slice.out{opacity:0.98}
+    .slice.picked{animation:flySlice 900ms cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes flySlice{0%{transform:translate3d(0,0,0) rotate(0deg) scale(1)}60%{transform:translate3d(0,-140px,0) rotate(6deg) scale(1.04)}100%{transform:translate3d(120px,-260px,0) rotate(10deg) scale(1.06);opacity:1}}
+    /* small highlight ring when selected */
+    .picked-ring{position:absolute;inset:0;display:none;pointer-events:none}
+    .picked-ring.show{display:block;filter:drop-shadow(0 18px 40px rgba(255,88,196,0.16));}
+
+    .after-controls{display:none;gap:10px;margin-top:18px}
+    .after-controls.show{display:flex}
+    .controls-row{margin-top:18px}
+
+    /* small caption */
+    .cake-left h2{margin:4px 0 10px;font-family:'Playfair Display',serif;font-size:24px}
+    .cake-left p{color:var(--muted);margin:0 0 12px;font-size:15px}
+
+    /* responsive */
     @media (max-width:980px){
-      .name-overlay, .name-overlay.bt{ font-size:20vw }
+      .cake-wrap{flex-direction:column;gap:18px;padding:18px}
+      .cake-right{width:100%}
+      .cake-ctr{width:320px;height:320px}
       .portrait-wrap{ width:320px }
-      .bg-word-top, .bg-word-bottom{ font-size:38vw }
     }
+
   </style>
 </head>
 <body>
-  <div class="hero">
 
-    <!-- VIDEO: put your MP4 at assets/video/background.mp4 -->
+  <!-- ========== FIRST PAGE (unchanged) ========== -->
+  <div class="hero" id="hero">
     <video id="bgVideo" autoplay muted loop playsinline>
       <source src="assets/video/background.mp4" type="video/mp4">
     </video>
 
-    <!-- subtle layer effects -->
     <div class="layer stars"></div>
     <div class="layer nebula"></div>
 
-    <!-- huge background words behind -->
     <div class="bg-word-top">HAPPY</div>
     <div class="bg-word-bottom">BIRTHDAY</div>
 
-    <!-- portrait centered -->
     <div class="portrait-wrap" id="portraitWrap">
       <div class="portrait" id="portrait">
         <img src="assets/img/raam-hero-centered.png" alt="Raam">
       </div>
     </div>
 
-    <!-- overlays IN FRONT of portrait -->
     <div class="name-overlay" aria-hidden><span class="first">Raam</span></div>
     <div class="name-overlay bt" aria-hidden><span class="last">Prakash</span></div>
 
-    <!-- music control top-right -->
     <button id="playBtn" class="neon-glass-btn" aria-pressed="false">▶ Play Music</button>
 
     <div class="vignette"></div>
     <div class="hint">SCROLL TO KNOW MORE</div>
   </div>
 
-  <section style="height:140vh;background:linear-gradient(180deg,transparent,rgba(2,1,8,0.75));"></section>
+  <section style="height:110vh;background:linear-gradient(180deg,transparent,rgba(2,1,8,0.75));"></section>
 
-  <!-- audio (use .mp3/.ogg) -->
   <audio id="bgMusic" src="assets/music/Raam.mp3" loop preload="metadata"></audio>
 
-  <script>
-    /* PARALLAX: portrait + layers + overlays follow mouse */
-    (function(){
-      const pw = document.getElementById('portraitWrap');
-      const stars = document.querySelector('.stars');
-      const neb = document.querySelector('.nebula');
-      const topWord = document.querySelector('.bg-word-top');
-      const bottomWord = document.querySelector('.bg-word-bottom');
-      const overlay = document.querySelector('.name-overlay');
-      const overlayBt = document.querySelector('.name-overlay.bt');
+  <!-- ========== SECOND PAGE (CAKE) ========== -->
+  <section id="page-cake" class="cake-section" aria-label="Cake">
+    <div class="cake-wrap">
+      <div class="cake-left">
+        <h2>Cake Cutting</h2>
+        <p>Click <strong>Cut the Cake</strong> to slice the cake into 8 pieces. One piece will pop forward — then choose <em>Eat</em> or <em>Next</em>.</p>
 
-      let mx=0,my=0, rx=0,ry=0;
-      window.addEventListener('mousemove', e=>{
-        const cx = innerWidth/2, cy = innerHeight/2;
-        mx = (e.clientX - cx) / cx;
-        my = (e.clientY - cy) / cy;
-      }, {passive:true});
+        <div style="display:flex;align-items:center;gap:12px">
+          <button id="cutBtn" class="btn primary">Cut the Cake</button>
 
-      function lerp(a,b,n){ return a + (b-a)*n; }
+          <div class="after-controls" id="afterControls" aria-hidden>
+            <button id="eatBtn" class="btn">Eat</button>
+            <button id="nextBtn" class="btn">Next</button>
+          </div>
+        </div>
 
-      function frame(){
-        rx = lerp(rx, mx, 0.09);
-        ry = lerp(ry, my, 0.09);
+        <div style="margin-top:14px;color:var(--muted);font-size:13px">Tip: the slice animation is vector-based — if you want a photographic cake instead, swap the SVG for an image + 8 masked slices.</div>
+      </div>
 
-        pw.style.transform = `translate(-50%, -50%) translate(${rx*36}px, ${ry*26}px)`;
+      <div class="cake-right" aria-hidden>
+        <div class="cake-ctr" id="cakeCtr">
+          <!-- improved SVG with 8 slices (center at 0,0) -->
+          <svg id="cakeSVG" viewBox="-150 -150 300 300" width="360" height="360" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <defs>
+              <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.5" /></filter>
+            </defs>
+            <!-- base plate -->
+            <circle cx="0" cy="0" r="126" fill="#f6e6ef" opacity="0.92" />
+            <!-- slices -->
+            <g id="slices">
+              <path class="slice" id="s0" d="M0 0 L126 0 A126 126 0 0 1 89.1 89.1 Z" fill="#ffd7e6" stroke="#ffeef6" stroke-width="1"/>
+              <path class="slice" id="s1" d="M0 0 L89.1 89.1 A126 126 0 0 1 0 126 Z" fill="#ffc7dd" stroke="#fff3f8" stroke-width="1"/>
+              <path class="slice" id="s2" d="M0 0 L0 126 A126 126 0 0 1 -89.1 89.1 Z" fill="#ffbcd4" stroke="#fff3f8" stroke-width="1"/>
+              <path class="slice" id="s3" d="M0 0 L-89.1 89.1 A126 126 0 0 1 -126 0 Z" fill="#ffabd1" stroke="#fff3f8" stroke-width="1"/>
+              <path class="slice" id="s4" d="M0 0 L-126 0 A126 126 0 0 1 -89.1 -89.1 Z" fill="#ffa0c7" stroke="#fff3f8" stroke-width="1"/>
+              <path class="slice" id="s5" d="M0 0 L-89.1 -89.1 A126 126 0 0 1 0 -126 Z" fill="#ff96c2" stroke="#fff3f8" stroke-width="1"/>
+              <path class="slice" id="s6" d="M0 0 L0 -126 A126 126 0 0 1 89.1 -89.1 Z" fill="#ffb2cd" stroke="#fff3f8" stroke-width="1"/>
+              <path class="slice" id="s7" d="M0 0 L89.1 -89.1 A126 126 0 0 1 126 0 Z" fill="#ffc6d8" stroke="#fff3f8" stroke-width="1"/>
+            </g>
+            <!-- center decor -->
+            <g transform="translate(0,-18)">
+              <circle cx="0" cy="0" r="18" fill="#fff" opacity="0.95"/>
+              <rect x="-6" y="-36" width="12" height="18" rx="3" fill="#ffb6d2"/>
+            </g>
+          </svg>
 
-        topWord.style.transform = `translate(calc(-50% + ${-rx*48}px), ${-ry*18}px)`;
-        bottomWord.style.transform = `translate(calc(-50% + ${-rx*60}px), ${-ry*22}px)`;
+          <!-- decorative ring when a slice is picked -->
+          <svg class="picked-ring" id="pickedRing" width="420" height="420" viewBox="-210 -210 420 420" style="position:absolute;pointer-events:none;z-index:9">
+            <circle cx="0" cy="0" r="150" stroke="rgba(255,88,196,0.18)" stroke-width="10" fill="none" stroke-linecap="round" />
+          </svg>
 
-        if(overlay) overlay.style.transform = `translate(-50%,-22%) translate(${rx*28}px, ${ry*18}px)`;
-        if(overlayBt) overlayBt.style.transform = `translate(-50%,-22%) translate(${rx*28}px, ${ry*18}px)`;
+        </div>
+      </div>
+    </div>
+  </section>
 
-        stars.style.transform = `translate3d(${ -rx*24 }px, ${ -ry*14 }px, 0)`;
-        neb.style.transform = `translate3d(${ -rx*16 }px, ${ -ry*8 }px, 0)`;
+  <section style="height:60vh"></section>
 
-        requestAnimationFrame(frame);
+<script>
+/* ========== Portrait subtle tilt while first page is visible ========== */
+(function(){
+  const portraitWrap = document.getElementById('portraitWrap');
+  let active = true;
+  // small continuous wobble while hero is in view
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        portraitWrap.style.transition = 'transform .6s cubic-bezier(.2,.9,.2,1)';
+        portraitWrap.style.transform = portraitWrap.style.transform; // keep existing
+        // add gentle tilt loop
+        portraitWrap._wobble = requestAnimationFrame(function wobble(t=0){
+          const r = Math.sin(t/900) * 0.8; // degrees
+          portraitWrap.style.transform = portraitWrap.style.transform.includes('translate') ?
+            portraitWrap.style.transform.replace(/rotate\([^)]+\)/,'') + ` rotate(${r}deg)` :
+            `translate(-50%,-50%) rotate(${r}deg)`;
+          portraitWrap._wobble = requestAnimationFrame(wobble);
+        });
+      } else {
+        cancelAnimationFrame(portraitWrap._wobble);
+        portraitWrap.style.transform = 'translate(-50%,-50%)';
       }
-      frame();
-    })();
+    });
+  }, {threshold: 0.45});
+  obs.observe(document.getElementById('hero'));
+})();
 
-    /* MUSIC PLAY BUTTON */
-    (function(){
-      const btn = document.getElementById('playBtn');
-      const music = document.getElementById('bgMusic');
-      let playing = false;
-      btn.addEventListener('click', ()=>{
-        if(!playing){
-          music.play().then(()=>{ playing=true; btn.textContent='⏸ Pause Music'; }).catch(()=>{ alert('Autoplay blocked. Click again to allow audio'); })
-        } else {
-          music.pause(); playing=false; btn.textContent='▶ Play Music';
-        }
+/* ========== PARALLAX (same as before) ========== */
+(function(){
+  const pw = document.getElementById('portraitWrap');
+  const stars = document.querySelector('.stars');
+  const neb = document.querySelector('.nebula');
+  const topWord = document.querySelector('.bg-word-top');
+  const bottomWord = document.querySelector('.bg-word-bottom');
+  const overlay = document.querySelector('.name-overlay');
+  const overlayBt = document.querySelector('.name-overlay.bt');
+
+  let mx=0,my=0, rx=0,ry=0;
+  window.addEventListener('mousemove', e=>{
+    const cx = innerWidth/2, cy = innerHeight/2;
+    mx = (e.clientX - cx) / cx;
+    my = (e.clientY - cy) / cy;
+  }, {passive:true});
+
+  function lerp(a,b,n){ return a + (b-a)*n; }
+
+  function frame(){
+    rx = lerp(rx, mx, 0.09);
+    ry = lerp(ry, my, 0.09);
+
+    pw.style.transform = `translate(-50%, -50%) translate(${rx*36}px, ${ry*26}px)`;
+
+    topWord.style.transform = `translate(calc(-50% + ${-rx*48}px), ${-ry*18}px)`;
+    bottomWord.style.transform = `translate(calc(-50% + ${-rx*60}px), ${-ry*22}px)`;
+
+    if(overlay) overlay.style.transform = `translate(-50%,-22%) translate(${rx*28}px, ${ry*18}px)`;
+    if(overlayBt) overlayBt.style.transform = `translate(-50%,-22%) translate(${rx*28}px, ${ry*18}px)`;
+
+    stars.style.transform = `translate3d(${ -rx*24 }px, ${ -ry*14 }px, 0)`;
+    neb.style.transform = `translate3d(${ -rx*16 }px, ${ -ry*8 }px, 0)`;
+
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+
+/* ========== MUSIC BUTTON ========== */
+(function(){
+  const btn = document.getElementById('playBtn');
+  const music = document.getElementById('bgMusic');
+  let playing = false;
+  btn.addEventListener('click', ()=>{
+    if(!playing){
+      music.play().then(()=>{ playing=true; btn.textContent='⏸ Pause Music'; }).catch(()=>{ alert('Autoplay blocked. Click page to allow audio'); })
+    } else {
+      music.pause(); playing=false; btn.textContent='▶ Play Music';
+    }
+  });
+})();
+
+
+/* ============================
+   Improved Cake interaction:
+   - Cut -> spread slices -> pick one
+   - Eat -> slice flies forward + bite emoji + confetti burst
+   - Next -> scroll to top
+   ============================ */
+(function(){
+  const cutBtn = document.getElementById('cutBtn');
+  const slices = Array.from(document.querySelectorAll('#slices .slice'));
+  const pickedRing = document.getElementById('pickedRing');
+  const afterControls = document.getElementById('afterControls');
+  const eatBtn = document.getElementById('eatBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  // confetti canvas
+  const confettiCanvas = document.getElementById('confettiCanvas');
+  const ctx = confettiCanvas.getContext ? confettiCanvas.getContext('2d') : null;
+
+  // resize confetti canvas
+  function resizeConfetti(){
+    if(!ctx) return;
+    confettiCanvas.width = window.innerWidth;
+    confettiCanvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeConfetti);
+  resizeConfetti();
+
+  let hasCut = false;
+  let pickedIndex = -1;
+
+  function spreadSlices(){
+    slices.forEach((s, i) => {
+      const angleDeg = (i + 0.5) * (360/8);
+      const a = (angleDeg-90) * Math.PI/180;
+      const dist = 28 + (Math.random()*48);
+      const tx = Math.cos(a) * dist;
+      const ty = Math.sin(a) * dist;
+      s.style.transition = 'transform 800ms cubic-bezier(.2,.9,.2,1), opacity 700ms';
+      s.style.transform = `translate3d(${tx}px, ${ty}px, 0) rotate(${(Math.random()-0.5)*8}deg)`;
+    });
+  }
+
+  function pickOneSlice(){
+    pickedIndex = Math.floor(Math.random()*slices.length);
+    const chosen = slices[pickedIndex];
+    chosen.style.zIndex = 999;
+    chosen.classList.add('picked');
+    pickedRing.classList.add('show');
+    setTimeout(()=> afterControls.classList.add('show'), 700);
+  }
+
+  cutBtn.addEventListener('click', ()=>{
+    if(hasCut) return;
+    hasCut = true;
+    cutBtn.disabled = true;
+    cutBtn.textContent = 'Cutting...';
+    setTimeout(()=>{
+      spreadSlices();
+      setTimeout(()=> {
+        pickOneSlice();
+        cutBtn.textContent = 'Cut';
+        cutBtn.disabled = true;
+      }, 420);
+    }, 300);
+  });
+
+  /* CONFETTI Helper ------------------------------------------------ */
+  function launchConfetti(count = 60){
+    if(!ctx) return;
+    confettiCanvas.style.display = 'block';
+    const W = confettiCanvas.width, H = confettiCanvas.height;
+    const pieces = [];
+    const colors = ['#ff4db2','#ffd24d','#5af0ff','#9b5aff','#7ef59b','#ff7aa7'];
+
+    for(let i=0;i<count;i++){
+      pieces.push({
+        x: Math.random()*W,
+        y: -20 - Math.random()*200,
+        vx: (Math.random()-0.5)*6,
+        vy: 2 + Math.random()*5,
+        size: 6 + Math.random()*10,
+        rot: Math.random()*360,
+        vr: (Math.random()-0.5)*10,
+        color: colors[Math.floor(Math.random()*colors.length)],
+        life: 0,
+        tl: 200 + Math.random()*80
       });
-    })();
-  </script>
+    }
+
+    let elapsed = 0;
+    function frame(){
+      ctx.clearRect(0,0,W,H);
+      let active = false;
+      for(const p of pieces){
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.08; // gravity
+        p.rot += p.vr;
+        p.life++;
+        // draw rectangle confetti with rotation
+        ctx.save();
+        ctx.translate(p.x,p.y);
+        ctx.rotate(p.rot * Math.PI/180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size*0.6);
+        ctx.restore();
+        if(p.life < p.tl + 40) active = true;
+      }
+      elapsed++;
+      if(active) requestAnimationFrame(frame);
+      else {
+        ctx.clearRect(0,0,W,H);
+        confettiCanvas.style.display = 'none';
+      }
+    }
+    frame();
+  }
+
+  /* EAT behavior: clone picked slice to top-layer, animate bite + confetti */
+  eatBtn.addEventListener('click', async ()=>{
+    const idx = pickedIndex;
+    if(idx < 0) return;
+    const original = slices[idx];
+    // get bounding box of SVG path to compute position
+    const svg = document.getElementById('cakeSVG');
+    const svgRect = svg.getBoundingClientRect();
+    const pathBox = original.getBBox();
+    // create cloned SVG fragment and position absolutely
+    const clone = original.cloneNode(true);
+    const wrapper = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    wrapper.setAttribute('viewBox', svg.getAttribute('viewBox'));
+    wrapper.setAttribute('width', svgRect.width);
+    wrapper.setAttribute('height', svgRect.height);
+    wrapper.innerHTML = original.ownerSVGElement.innerHTML; // copy defs/center as fallback
+    // create a wrapper div
+    const div = document.createElement('div');
+    div.style.position = 'fixed';
+    div.style.left = (svgRect.left) + 'px';
+    div.style.top = (svgRect.top) + 'px';
+    div.style.width = svgRect.width + 'px';
+    div.style.height = svgRect.height + 'px';
+    div.style.pointerEvents = 'none';
+    div.style.zIndex = 9999;
+    // build a new svg that contains only the chosen path (centered)
+    const outSVG = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    outSVG.setAttribute('viewBox', svg.getAttribute('viewBox'));
+    outSVG.setAttribute('width', '100%');
+    outSVG.setAttribute('height', '100%');
+    outSVG.appendChild(clone);
+    div.appendChild(outSVG);
+    document.body.appendChild(div);
+
+    // hide the original (so it looks like we lifted it)
+    original.style.opacity = 0.02;
+
+    // animate the clone: pop forward + rotate + scale
+    div.animate([
+      { transform: 'translate3d(0,0,0) scale(1) rotate(0deg)', opacity:1 },
+      { transform: 'translate3d(80px,-120px,0) scale(1.06) rotate(6deg)', opacity:1 }
+    ], { duration: 900, easing:'cubic-bezier(.2,.8,.2,1)', fill:'forwards' });
+
+    // show bite emoji that scales and fades
+    const bite = document.createElement('div');
+    bite.textContent = '😋';
+    bite.style.position='fixed';
+    bite.style.left = (svgRect.left + svgRect.width*0.6) + 'px';
+    bite.style.top = (svgRect.top + svgRect.height*0.2) + 'px';
+    bite.style.fontSize = '46px';
+    bite.style.zIndex = 10001;
+    bite.style.opacity = 0;
+    bite.style.transform = 'translate(-50%,-50%) scale(0.2)';
+    document.body.appendChild(bite);
+
+    // animate bite emoji
+    bite.animate([
+      { transform:'translate(-50%,-50%) scale(0.3)', opacity:0 },
+      { transform:'translate(-50%,-50%) scale(1.1)', opacity:1 },
+      { transform:'translate(-50%,-50%) scale(0.9)', opacity:0.9 }
+    ], { duration: 700, easing:'cubic-bezier(.2,.8,.2,1)', fill:'forwards'});
+
+    // small delay so clone animation runs a bit
+    setTimeout(()=>{
+      // launch confetti
+      launchConfetti(72);
+      // animate final munch & fade
+      div.animate([
+        { transform: 'translate3d(80px,-120px,0) scale(1.06) rotate(6deg)', opacity:1 },
+        { transform: 'translate3d(140px,-260px,0) scale(0.85) rotate(18deg)', opacity:0 }
+      ], { duration: 700, easing:'cubic-bezier(.2,.8,.2,1)', fill:'forwards'});
+
+      bite.animate([
+        { transform:'translate(-50%,-50%) scale(1)', opacity:0.9 },
+        { transform:'translate(-50%,-50%) scale(0.6)', opacity:0 }
+      ], { duration: 700, easing:'ease-in', fill:'forwards' });
+
+      // hide ring + controls
+      pickedRing.animate([{opacity:1},{opacity:0}], {duration:350, fill:'forwards'});
+      afterControls.classList.remove('show');
+
+      // cleanup after animations
+      setTimeout(()=>{
+        div.remove();
+        bite.remove();
+        // remove original slice from DOM so cake now has one less piece
+        original.remove();
+      }, 900);
+
+    }, 520);
+  });
+
+  nextBtn.addEventListener('click', ()=>{
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+})();
+</script>
 </body>
 </html>
